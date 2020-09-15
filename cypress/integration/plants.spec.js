@@ -26,4 +26,22 @@ describe('plants', () => {
         expect(response.body).to.have.property('name').and.be.eq('Cactus')
       })
   })
+
+  // check that the home page displays heading
+  it('should display Welcome to Your Vue.js App on the home page', () => {
+    cy.visit('http://localhost:8080')
+    cy.contains('Welcome to Your Vue.js App').should('exist')
+  })
+
+  it('should display the Cactus on the home page', () => {
+    cy.visit('http://localhost:8080')
+    cy.get('h2').contains('Cactus').should('exist')
+    cy.get('h2').contains('Monstera').should('exist')
+  })
+
+  it('should return gabes email address', () => {
+    cy.visit('http://localhost:8080')
+    cy.contains('Cactus').click()
+    cy.contains('gabe@codecampleipzig.de').should('exist')
+  })
 })
