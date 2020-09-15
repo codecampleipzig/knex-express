@@ -30,7 +30,8 @@ app.post('/plants', async (req, res) => {
 // Find One
 app.get('/plants/:id', async (req, res) => {
   try {
-    res.send(await knex('plants').select().where({ id: req.params.id }))
+    const [plant] = await knex('plants').select().where({ id: req.params.id })
+    res.send(plant)
   } catch (error) {
     console.error(error)
   }
